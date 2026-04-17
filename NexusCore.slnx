@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="NexusCore.AppHost/NexusCore.AppHost.csproj" />
+  <Project Path="NexusCore.ServiceDefaults/NexusCore.ServiceDefaults.csproj" />
+  <Project Path="NexusCore/NexusCore.csproj" />
+</Solution>
