@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/Services/">
+    <Project Path="Services/Serialization.Tests/Serialization.Tests.csproj" />
+    <Project Path="Services/Serialization/Serialization.csproj" />
+  </Folder>
   <Project Path="NexusCore.AppHost/NexusCore.AppHost.csproj" />
   <Project Path="NexusCore.ServiceDefaults/NexusCore.ServiceDefaults.csproj" />
   <Project Path="NexusCore/NexusCore.csproj" />
