@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>NC.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>NC.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\NexusCore.ServiceDefaults\NexusCore.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\AuthService.Application\AuthService.Application.csproj" />
+    <ProjectReference Include="..\AuthService.Infrastructure.Identity\AuthService.Infrastructure.Identity.csproj" />
+    <ProjectReference Include="..\AuthService.Infrastructure.Persistence\AuthService.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
