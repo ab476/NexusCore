@@ -15,6 +15,13 @@ public class AuthDbContext(DbContextOptions<AuthDbContext> options) : DbContext(
     public DbSet<UserRole> UserRoles => Set<UserRole>();
     public DbSet<RoleClaim> RolePermissions => Set<RoleClaim>();
 
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder.Properties<Guid>()
+            .HaveConversion<BigEndianGuidConverter>();
+
+        base.ConfigureConventions(configurationBuilder);
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
