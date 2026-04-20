@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AuthService.Application\AuthService.Application.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.6" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthService.Application\AuthService.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

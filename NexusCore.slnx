@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/AuthService/">
     <Project Path="src/AuthService/AuthService.Api/AuthService.Api.csproj" />
-    <Project Path="src/AuthService/AuthService.Application/AuthService.Application.csproj" Id="b6bfd3ac-5f14-4a81-ae2c-ab08a9e107ba" />
+    <Project Path="src/AuthService/AuthService.Application/AuthService.Abstractions.csproj" Id="b6bfd3ac-5f14-4a81-ae2c-ab08a9e107ba" />
     <Project Path="src/AuthService/AuthService.Domain/AuthService.Domain.csproj" Id="1a944719-6a84-4e94-974b-c02a49982082" />
     <Project Path="src/AuthService/AuthService.Infrastructure.Identity/AuthService.Infrastructure.Identity.csproj" Id="ba9dfb3c-a353-4ac0-9dcb-ba5c11af701a" />
     <Project Path="src/AuthService/AuthService.Infrastructure.Persistence/AuthService.Infrastructure.Persistence.csproj" Id="4c476405-09b5-4c9e-90ee-0606cb7d1fdd" />
