@@ -9,10 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" Version="13.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" Version="10.5.0" />
     <ProjectReference Include="..\..\NexusCore.ServiceDefaults\NexusCore.ServiceDefaults.csproj" />
     <ProjectReference Include="..\AuthService.Application\AuthService.Abstractions.csproj" />
     <ProjectReference Include="..\AuthService.Infrastructure.Identity\AuthService.Infrastructure.Identity.csproj" />
-    <ProjectReference Include="..\AuthService.Infrastructure.Persistence\AuthService.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

@@ -15,8 +15,11 @@ public abstract class BaseEntityConfiguration<T> : IEntityTypeConfiguration<T> w
         builder.Property(c => c.Id)
             .HasColumnName("id");
 
-        builder.Property(r => r.ConcurrencyStamp)
-               .HasColumnName("concurrency_stamp")
+        builder.Property(r => r.LastVersionId)
+               .HasColumnName("last_version_id");
+
+        builder.Property(r => r.VersionId)
+               .HasColumnName("version_id")
                .IsConcurrencyToken();
     }
 

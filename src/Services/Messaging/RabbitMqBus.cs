@@ -29,23 +29,33 @@ public sealed class RabbitMqBus(IConnection connection, ISerializer serializer) 
     /// <summary>
     /// Safely initializes and returns a shared channel for publishing messages.
     /// </summary>
-    private async Task<IChannel> GetPublishChannelAsync()
+    private ValueTask<IChannel> GetPublishChannelAsync()
     {
-        if (_publishChannel is not null)
-            return _publishChannel;
+        if (_publishChannel is { IsOpen: true })
+            return ValueTask.FromResult(_publishChannel);
 
-        await _channelLock.WaitAsync();
-        try
+        return Core();
+
+        async ValueTask<IChannel> Core()
         {
-            // Double-check locking pattern
-            _publishChannel ??= await _connection.CreateChannelAsync();
-            return _publishChannel;
-        }
-        finally
-        {
-            _channelLock.Release();
+            await _channelLock.WaitAsync();
+            try
+            {
+                if (_publishChannel is not { IsOpen: true })
+                {
+                    _publishChannel?.Dispose();
+                    _publishChannel = await _connection.CreateChannelAsync();
+                }
+
+                return _publishChannel;
+            }
+            finally
+            {
+                _channelLock.Release();
+            }
         }
     }
+
 
     /// <summary>
     /// Sends a persistent message to a specific point-to-point queue.

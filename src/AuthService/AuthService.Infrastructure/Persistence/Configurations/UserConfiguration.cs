@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NC.AuthService.Domain;
-using System;
 
 namespace NC.AuthService.Infrastructure.Persistence.Configurations;
 

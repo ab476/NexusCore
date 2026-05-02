@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NC.AuthService.Infrastructure.Identity;
+﻿namespace NC.AuthService.Infrastructure.Identity;
     public class JwtOptions
     {
         public required string Secret { get; set; }

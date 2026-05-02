@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NC.AuthService.Domain;
 using NC.AuthService.Infrastructure.Persistence.Configurations;
+using NC.AuthService.Infrastructure.Persistence.Converters;
 
 namespace NC.AuthService.Infrastructure.Persistence;
 

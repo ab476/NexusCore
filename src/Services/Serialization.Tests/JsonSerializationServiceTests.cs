@@ -1,10 +1,7 @@
 ﻿using FluentAssertions;
-using MemoryPack;
-using NC.Serialization;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Xunit;
 
 namespace NC.Serialization.Tests;
 
