@@ -4,7 +4,7 @@ using System;
 using System.Net;
 
 // Base class for operations that don't return data (e.g., Delete, Update)
-public class Result : IResult
+public class Outcome : IOutcome
 {
     public bool IsSuccess { get; }
     public bool IsFailure => !IsSuccess;
@@ -15,7 +15,7 @@ public class Result : IResult
     public int StatusCode { get; }
 
     // Protected constructor forces the use of the static factory methods
-    protected Result(bool isSuccess, string error, string message, HttpStatusCode statusCode)
+    protected Outcome(bool isSuccess, string error, string message, HttpStatusCode statusCode)
     {
         // Guard against invalid states
         if (isSuccess && !string.IsNullOrWhiteSpace(error))
@@ -30,22 +30,22 @@ public class Result : IResult
     }
 
     // Static factory methods for easy creation (with sensible HTTP defaults)
-    public static Result Success(string message = "", HttpStatusCode statusCode = HttpStatusCode.OK)
+    public static Outcome Success(string message = "", HttpStatusCode statusCode = HttpStatusCode.OK)
         => new(true, string.Empty, message, statusCode);
 
-    public static Result Failure(string error, string message = "", HttpStatusCode statusCode = HttpStatusCode.BadRequest)
+    public static Outcome Failure(string error, string message = "", HttpStatusCode statusCode = HttpStatusCode.BadRequest)
         => new(false, error, message, statusCode);
 
     // Helpers to easily create generic results
-    public static Result<T> Success<T>(T value, string message = "", HttpStatusCode statusCode = HttpStatusCode.OK)
+    public static Outcome<T> Success<T>(T value, string message = "", HttpStatusCode statusCode = HttpStatusCode.OK)
         => new(value, true, string.Empty, message, statusCode);
 
-    public static Result<T> Failure<T>(string error, string message = "", HttpStatusCode statusCode = HttpStatusCode.BadRequest)
+    public static Outcome<T> Failure<T>(string error, string message = "", HttpStatusCode statusCode = HttpStatusCode.BadRequest)
         => new(default, false, error, message, statusCode);
 }
 
 // Generic class for operations that return data (e.g., Get, Create)
-public class Result<T> : Result, IResult<T>
+public class Outcome<T> : Outcome, IOutcome<T>
 {
     private readonly T? _value;
 
@@ -55,7 +55,7 @@ public class Result<T> : Result, IResult<T>
         : throw new InvalidOperationException("Cannot access the value of a failure result.");
 
     // Internal constructor ensures it's only created via the base Result factory methods
-    protected internal Result(T? value, bool isSuccess, string error, string message, HttpStatusCode statusCode)
+    protected internal Outcome(T? value, bool isSuccess, string error, string message, HttpStatusCode statusCode)
         : base(isSuccess, error, message, statusCode)
     {
         _value = value;

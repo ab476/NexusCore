@@ -1,5 +1,4 @@
-
-namespace NC.AuthService.Abstractions;
+namespace NC.AuthService.Contracts;
 
 /// <summary>
 /// Defines the contract for user data access operations.

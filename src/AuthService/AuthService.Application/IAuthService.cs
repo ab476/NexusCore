@@ -1,6 +1,6 @@
-using NC.AuthService.Abstractions.Models;
+using NC.AuthService.Contracts.Models;
 
-namespace NC.AuthService.Abstractions;
+namespace NC.AuthService.Contracts;
 
 /// <summary>
 /// Defines the contract for the authentication service, providing core authentication functionalities.

@@ -1,4 +1,4 @@
-namespace NC.AuthService.Abstractions.Models;
+namespace NC.AuthService.Contracts.Models;
 
 /// <summary>
 /// Represents the data required to register a new user.

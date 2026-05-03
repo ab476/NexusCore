@@ -2,9 +2,9 @@
 
 public class RoleClaim
 {
-    public Guid RoleId { get; set; }
-    public Guid ClaimId { get; set; }
+    public required Guid RoleId { get; set; }
+    public required string ClaimType { get; set; }
+    public required string ClaimValue { get; set; }
 
     public Role RoleNavigation { get; set; } = null!;
-    public AppClaim AppClaimNavigation { get; set; } = null!;
 }

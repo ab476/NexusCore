@@ -1,17 +1,16 @@
-
-using NC.AuthService.Abstractions.Models;
+using NC.AuthService.Contracts.Models;
 using NC.OperationResults;
 
-namespace NC.AuthService.Abstractions;
+namespace NC.AuthService.Contracts;
 
 /// <summary>
 /// Handles modifying role information (Commands).
 /// </summary>
 public interface IRoleWriteService
 {
-    Task<IResult<Guid>> CreateAsync(CreateRoleRequest request, CancellationToken cancellationToken = default);
+    Task<IOutcome<Guid>> CreateAsync(CreateRoleRequest request, CancellationToken cancellationToken = default);
 
-    Task<IResult> UpdateAsync(UpdateRoleRequest request, CancellationToken cancellationToken = default);
+    Task<IOutcome> UpdateAsync(UpdateRoleRequest request, CancellationToken cancellationToken = default);
 
-    Task<IResult> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<IOutcome> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

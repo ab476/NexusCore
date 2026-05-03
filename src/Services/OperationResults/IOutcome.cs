@@ -1,6 +1,6 @@
 ﻿namespace NC.OperationResults;
 
-public interface IResult
+public interface IOutcome
 {
     string Error { get; }
     bool IsFailure { get; }
@@ -9,7 +9,7 @@ public interface IResult
     int StatusCode { get; }
 }
 
-public interface IResult<T> : IResult
+public interface IOutcome<T> : IOutcome
 {
     T Value { get; }
 }

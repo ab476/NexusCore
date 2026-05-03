@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NC.AuthService.Domain;
-
-namespace NC.AuthService.Infrastructure.Persistence.Configurations;
+﻿namespace NC.AuthService.Infrastructure.Persistence.Configurations;
 
 public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
 {
@@ -11,11 +7,21 @@ public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
         builder.ToTable($"{DbConstants.TablePrefix}role_permissions");
 
         // Composite Primary Key
-        builder.HasKey(rp => new { rp.RoleId, rp.ClaimId });
+        builder.HasKey(rc => new { rc.RoleId, rc.ClaimType, rc.ClaimValue });
 
         // Explicitly name the foreign key columns
-        builder.Property(rp => rp.RoleId).HasColumnName("role_id");
-        builder.Property(rp => rp.ClaimId).HasColumnName("claim_id");
+        builder.Property(rc => rc.RoleId)
+            .HasColumnName("role_id");
+
+        builder.Property(rc => rc.ClaimType)
+            .HasColumnName("claim_type")
+            .HasMaxLength(256)
+            .IsRequired();
+
+        builder.Property(rc => rc.ClaimValue)
+            .HasColumnName("claim_value")
+            .HasMaxLength(1024)
+            .IsRequired();
 
         // Relationships
         builder.HasOne(rp => rp.RoleNavigation)
@@ -23,9 +29,5 @@ public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
                .HasForeignKey(rp => rp.RoleId)
                .OnDelete(DbConstants.DeleteBehavior);
 
-        builder.HasOne(rp => rp.AppClaimNavigation)
-               .WithMany(p => p.RoleClaims)
-               .HasForeignKey(rp => rp.ClaimId)
-               .OnDelete(DbConstants.DeleteBehavior);
     }
 }

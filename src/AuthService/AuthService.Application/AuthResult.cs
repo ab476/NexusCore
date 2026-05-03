@@ -1,4 +1,4 @@
-namespace NC.AuthService.Abstractions;
+namespace NC.AuthService.Contracts;
 
 /// <summary>
 /// Represents the result of an authentication operation.

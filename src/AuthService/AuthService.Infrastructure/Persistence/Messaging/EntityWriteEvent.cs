@@ -1,4 +1,5 @@
 namespace NC.AuthService.Infrastructure.Persistence.Messaging;
+
 public record EntityWriteEvent<T> where T : class
 {
     public Guid EventId { get; init; } = Guid.CreateVersion7();

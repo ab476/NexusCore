@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NC.AuthService.Domain;
-
-namespace NC.AuthService.Infrastructure.Persistence.Configurations;
+﻿namespace NC.AuthService.Infrastructure.Persistence.Configurations;
 
 public abstract class BaseEntityConfiguration<T> : IEntityTypeConfiguration<T> where T : BaseEntity
 {

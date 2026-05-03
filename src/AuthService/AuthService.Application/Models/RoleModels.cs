@@ -1,6 +1,6 @@
 ﻿using NC.AuthService.Domain;
 
-namespace NC.AuthService.Abstractions.Models;
+namespace NC.AuthService.Contracts.Models;
 
 public record RoleDto
 {

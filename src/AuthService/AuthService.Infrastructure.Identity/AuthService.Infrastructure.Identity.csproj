@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AuthService.Application\AuthService.Abstractions.csproj" />
+    <ProjectReference Include="..\AuthService.Application\AuthService.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

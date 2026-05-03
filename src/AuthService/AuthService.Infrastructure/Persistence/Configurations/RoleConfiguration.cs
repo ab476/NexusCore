@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NC.AuthService.Domain;
+﻿namespace NC.AuthService.Infrastructure.Persistence.Configurations;
 
-namespace NC.AuthService.Infrastructure.Persistence.Configurations;
 public class RoleConfiguration : BaseEntityConfiguration<Role>
 {
     public new void Configure(EntityTypeBuilder<Role> builder)

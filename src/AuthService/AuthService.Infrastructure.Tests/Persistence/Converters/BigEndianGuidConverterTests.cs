@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using NC.AuthService.Infrastructure.Persistence.Converters;
-using Xunit;
 
 namespace NC.AuthService.Infrastructure.Tests.Persistence.Converters;
 

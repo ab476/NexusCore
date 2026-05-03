@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using NC.Validation.Abstractions;
 
 namespace NC.Validation.Services;

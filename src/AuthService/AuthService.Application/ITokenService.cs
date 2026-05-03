@@ -1,7 +1,7 @@
 using NC.AuthService.Domain;
 using System.Security.Claims;
 
-namespace NC.AuthService.Abstractions;
+namespace NC.AuthService.Contracts;
 
 public interface ITokenService
 {

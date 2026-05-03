@@ -1,4 +1,4 @@
-﻿namespace NC.AuthService.Abstractions;
+﻿namespace NC.AuthService.Contracts;
 
 /// <summary>
 /// Provides an abstraction for securely hashing and verifying passwords.

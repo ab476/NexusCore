@@ -1,16 +1,12 @@
 ﻿using Core.Abstractions;
-using Microsoft.EntityFrameworkCore;
-using NC.AuthService.Abstractions;
-using NC.AuthService.Abstractions.Models;
-using NC.AuthService.Domain;
-using NC.OperationResults;
-using System.Net;
+using NC.AuthService.Contracts;
+using NC.AuthService.Contracts.Models;
 
 namespace NC.AuthService.Infrastructure.Persistence.Services;
 
 public class RoleWriteService(AuthDbContext context, ILookupNormalizer normalizer) : IRoleWriteService
 {
-    public async Task<IResult<Guid>> CreateAsync(CreateRoleRequest request, CancellationToken cancellationToken = default)
+    public async Task<IOutcome<Guid>> CreateAsync(CreateRoleRequest request, CancellationToken cancellationToken = default)
     {
         string normalizedName = normalizer.Normalize(request.Name);
 
@@ -19,7 +15,7 @@ public class RoleWriteService(AuthDbContext context, ILookupNormalizer normalize
 
         if (roleExists)
         {
-            return Result.Failure<Guid>(
+            return Outcome.Failure<Guid>(
                 error: "RoleNameConflict",
                 message: $"A role with the name '{request.Name}' already exists.",
                 statusCode: HttpStatusCode.Conflict);
@@ -36,17 +32,17 @@ public class RoleWriteService(AuthDbContext context, ILookupNormalizer normalize
         context.Roles.Add(newRole);
         await context.SaveChangesAsync(cancellationToken);
 
-        return Result.Success(newRole.Id, message: "Role created successfully.", statusCode: HttpStatusCode.Created);
+        return Outcome.Success(newRole.Id, message: "Role created successfully.", statusCode: HttpStatusCode.Created);
     }
 
-    public async Task<IResult> UpdateAsync(UpdateRoleRequest request, CancellationToken cancellationToken = default)
+    public async Task<IOutcome> UpdateAsync(UpdateRoleRequest request, CancellationToken cancellationToken = default)
     {
         var existingRole = await context.Roles
             .FirstOrDefaultAsync(r => r.Id == request.Id, cancellationToken);
 
         if (existingRole == null)
         {
-            return Result.Failure(
+            return Outcome.Failure(
                 error: "RoleNotFound",
                 message: "The role you are trying to update does not exist.",
                 statusCode: HttpStatusCode.NotFound);
@@ -61,7 +57,7 @@ public class RoleWriteService(AuthDbContext context, ILookupNormalizer normalize
 
             if (nameTaken)
             {
-                return Result.Failure(
+                return Outcome.Failure(
                     error: "RoleNameConflict",
                     message: "Another role is already using this name.",
                     statusCode: HttpStatusCode.Conflict);
@@ -76,17 +72,17 @@ public class RoleWriteService(AuthDbContext context, ILookupNormalizer normalize
         context.Roles.Update(existingRole);
         await context.SaveChangesAsync(cancellationToken);
 
-        return Result.Success(message: "Role updated successfully.", statusCode: HttpStatusCode.OK);
+        return Outcome.Success(message: "Role updated successfully.", statusCode: HttpStatusCode.OK);
     }
 
-    public async Task<IResult> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<IOutcome> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var existingRole = await context.Roles
             .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
 
         if (existingRole == null)
         {
-            return Result.Failure(
+            return Outcome.Failure(
                 error: "RoleNotFound",
                 message: "The role you are trying to delete does not exist.",
                 statusCode: HttpStatusCode.NotFound);
@@ -95,6 +91,6 @@ public class RoleWriteService(AuthDbContext context, ILookupNormalizer normalize
         context.Roles.Remove(existingRole);
         await context.SaveChangesAsync(cancellationToken);
 
-        return Result.Success(message: "Role deleted successfully.", statusCode: HttpStatusCode.NoContent);
+        return Outcome.Success(message: "Role deleted successfully.", statusCode: HttpStatusCode.NoContent);
     }
 }

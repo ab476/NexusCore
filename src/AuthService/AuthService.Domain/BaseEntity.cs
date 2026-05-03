@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NC.AuthService.Domain;
+﻿namespace NC.AuthService.Domain;
 
 public abstract class BaseEntity
 {

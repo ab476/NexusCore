@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NC.AuthService.Domain;
-using NC.AuthService.Infrastructure.Persistence.Configurations;
+﻿using NC.AuthService.Infrastructure.Persistence.Configurations;
 using NC.AuthService.Infrastructure.Persistence.Converters;
 
 namespace NC.AuthService.Infrastructure.Persistence;
@@ -14,12 +12,17 @@ public class AuthDbContext(DbContextOptions<AuthDbContext> options) : DbContext(
 
     // Join tables (Optional to expose as DbSets, but useful for direct querying)
     public DbSet<UserRole> UserRoles => Set<UserRole>();
-    public DbSet<RoleClaim> RolePermissions => Set<RoleClaim>();
+    public DbSet<RoleClaim> RoleClaims => Set<RoleClaim>();
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
-        configurationBuilder.Properties<Guid>()
+        configurationBuilder
+            .Properties<Guid>()
             .HaveConversion<BigEndianGuidConverter>();
+
+        configurationBuilder
+            .Properties<Guid?>()
+            .HaveConversion<NullableBigEndianGuidConverter>();
 
         base.ConfigureConventions(configurationBuilder);
     }
@@ -33,7 +36,7 @@ public class AuthDbContext(DbContextOptions<AuthDbContext> options) : DbContext(
     /// <summary>
     /// Applies all explicit Entity Framework entity configurations.
     /// </summary>
-    private static void ApplyEntityConfigurations(ModelBuilder modelBuilder)
+    internal static void ApplyEntityConfigurations(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());

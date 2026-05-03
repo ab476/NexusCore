@@ -1,7 +1,7 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NC.AuthService.Abstractions;
+using NC.AuthService.Contracts;
+
 //using NC.AuthService.Infrastructure.Persistence.Interceptors;
 using NC.AuthService.Infrastructure.Persistence.Services;
 

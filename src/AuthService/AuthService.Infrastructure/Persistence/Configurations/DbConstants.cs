@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace NC.AuthService.Infrastructure.Persistence.Configurations;
+﻿namespace NC.AuthService.Infrastructure.Persistence.Configurations;
 
 public static class DbConstants
 {

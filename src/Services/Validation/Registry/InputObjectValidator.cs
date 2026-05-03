@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NC.Validation.Registry;
 

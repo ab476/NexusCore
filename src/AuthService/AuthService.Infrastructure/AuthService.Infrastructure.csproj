@@ -9,12 +9,12 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.2.2" />
+		<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.2.4" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Services\Core\Core.csproj" />
 	  <ProjectReference Include="..\..\Services\Messaging\Messaging.csproj" />
-	  <ProjectReference Include="..\AuthService.Application\AuthService.Abstractions.csproj" />
+	  <ProjectReference Include="..\AuthService.Application\AuthService.Contracts.csproj" />
 	</ItemGroup>
 </Project>
