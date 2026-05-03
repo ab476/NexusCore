@@ -1,4 +1,6 @@
-﻿namespace NC.AuthService.Infrastructure.Persistence.Services;
+﻿using Humanizer;
+
+namespace NC.AuthService.Infrastructure.Persistence.Services;
 
 public class RoleClaimReadService(AuthDbContext context) : IRoleClaimReadService
 {
@@ -10,7 +12,7 @@ public class RoleClaimReadService(AuthDbContext context) : IRoleClaimReadService
             .Select(x => new RoleClaimResponse
             {
                 RoleId = x.RoleId,
-                ClaimType = x.ClaimType,
+                ClaimType = x.ClaimType.Humanize(),
                 ClaimValue = x.ClaimValue,
             })
             .ToArrayAsync();

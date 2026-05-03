@@ -1,4 +1,6 @@
-﻿namespace NC.AuthService.Infrastructure.Persistence.Configurations;
+﻿using NC.AuthService.Infrastructure.Persistence.Converters;
+
+namespace NC.AuthService.Infrastructure.Persistence.Configurations;
 
 public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
 {
@@ -15,12 +17,13 @@ public class RoleClaimConfiguration : IEntityTypeConfiguration<RoleClaim>
 
         builder.Property(rc => rc.ClaimType)
             .HasColumnName("claim_type")
-            .HasMaxLength(256)
+            .HasConversion<LowerCaseEnumConverter<AppClaimType>>()
+            .HasMaxLength(128)
             .IsRequired();
 
         builder.Property(rc => rc.ClaimValue)
             .HasColumnName("claim_value")
-            .HasMaxLength(1024)
+            .HasMaxLength(256)
             .IsRequired();
 
         // Relationships

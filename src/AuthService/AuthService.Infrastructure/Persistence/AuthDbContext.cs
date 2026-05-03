@@ -7,7 +7,6 @@ public class AuthDbContext(DbContextOptions<AuthDbContext> options) : DbContext(
 {
     public DbSet<User> Users => Set<User>();
     public DbSet<Role> Roles => Set<Role>();
-    public DbSet<AppClaim> Permissions => Set<AppClaim>();
     public DbSet<SecurityToken> RefreshTokens => Set<SecurityToken>();
 
     // Join tables (Optional to expose as DbSets, but useful for direct querying)
@@ -40,7 +39,6 @@ public class AuthDbContext(DbContextOptions<AuthDbContext> options) : DbContext(
     {
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
-        modelBuilder.ApplyConfiguration(new AppClaimConfiguration());
         modelBuilder.ApplyConfiguration(new SecurityTokenConfiguration());
         modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
         modelBuilder.ApplyConfiguration(new RoleClaimConfiguration());

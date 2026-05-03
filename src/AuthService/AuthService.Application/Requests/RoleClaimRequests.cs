@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NC.AuthService.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,14 +8,14 @@ namespace NC.AuthService.Contracts.Requests;
 public record AddRoleClaimRequest
 {
     public required Guid RoleId { get; init; }
-    public required string ClaimType { get; init; }
+    public required AppClaimType ClaimType { get; init; }
     public required string ClaimValue { get; init; }
 }
 
 public record RemoveRoleClaimRequest
 {
     public required Guid RoleId { get; init; }
-    public required string ClaimType { get; init; }
+    public required AppClaimType ClaimType { get; init; }
     public required string ClaimValue { get; init; }
 }
 
@@ -32,6 +33,6 @@ public record RemoveRoleClaimsBulkRequest
 
 public record RoleClaimItem
 {
-    public required string ClaimType { get; init; }
+    public required AppClaimType ClaimType { get; init; }
     public required string ClaimValue { get; init; }
 }
