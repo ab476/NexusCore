@@ -67,7 +67,6 @@ public class RoleWriteService(AuthDbContext context, ILookupNormalizer normalize
         existingRole.Name = request.Name;
         existingRole.Description = request.Description;
         existingRole.NormalizedName = normalizedName;
-        existingRole.LastVersionId = existingRole.VersionId;
 
         context.Roles.Update(existingRole);
         await context.SaveChangesAsync(cancellationToken);

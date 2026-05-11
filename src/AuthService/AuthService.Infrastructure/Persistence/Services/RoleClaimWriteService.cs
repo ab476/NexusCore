@@ -1,6 +1,4 @@
-﻿using NC.AuthService.Contracts.Helpers;
-
-namespace NC.AuthService.Infrastructure.Persistence.Services;
+﻿namespace NC.AuthService.Infrastructure.Persistence.Services;
 
 public class RoleClaimWriteService(AuthDbContext _context) : IRoleClaimWriteService
 {

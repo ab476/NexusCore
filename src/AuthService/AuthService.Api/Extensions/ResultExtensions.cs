@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using NC.OperationResults;
+﻿using NC.OperationResults;
 
 namespace NC.AuthService.Api.Extensions;
 
